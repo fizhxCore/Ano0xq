@@ -19,7 +19,7 @@ export async function POST(req) {
   });
   const token = await tokenRes.json();
   if (!token.access_token) {
-    return Response.json({ error: 'Login Google gagal, cek kredensial di Vercel' }, { status: 500 });
+    return Response.json({ error: 'Login Google gagal: ' + (token.error_description || token.error)' }, { status: 500 });
   }
 
   const init = await fetch(
